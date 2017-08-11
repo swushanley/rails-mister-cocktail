@@ -1,5 +1,21 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
-<p><%= @cocktail.name %></p>
+<div class="container">
+  <div class="row col-md-6 col-md-offset-3">
+    <h1><%= @cocktail.name %></h1>
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+      <li><%= dose.description %><%= dose.ingredient.name %>
+        <%= link_to "delete", dose_path(dose), method: :delete %></li>
+      <% end %>
+    </ul>
+    <h2>Add a dose</h2>
+    <%= simple_form_for([@cocktail, @dose]) do |f| %>
+    <!-- ^@cocktail and @dose bc dose nested in cocktail -->
+      <%= f.association :ingredient%>
+      <%= f.input :description%>
+      <%= f.button :submit %>
+    <% end %>
+    <%= link_to 'Back', cocktails_path %>
+  </div>
+</div>
 
-<p><%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail.id) %></p>
+
