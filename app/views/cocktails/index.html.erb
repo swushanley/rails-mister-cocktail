@@ -1,14 +1,31 @@
 <div class="container">
   <div class="row col-md-6 col-md-offset-3">
     <h1>Cocktails</h1>
-    <div class="card">
-      <ul>
-        <% @cocktails.each do |cocktail| %>
-        <li><%= link_to cocktail.name, cocktail_path(cocktail.id) %></li>
+    <ul>
+      <% @cocktails.each do |cocktail| %>
+      <% if cocktail.photo.nil? %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url("http://placehold.it/350x150")">
+               <li><%= link_to cocktail.name, cocktail_path(cocktail) %><%= cl_image_tag("a6bcb9wwrrfkq1unxvms.jpg",
+               width: 400, height: 300, crop: :fill) %></li>
+             </div>
+
+      <% else %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+               <li><%= link_to cocktail.name, cocktail_path(cocktail) %><%= cl_image_tag("a6bcb9wwrrfkq1unxvms.jpg",
+               width: 400, height: 300, crop: :fill) %></li>
+             </div>
         <% end %>
-      </ul>
-    </div>
+       <% end %>
+
+    </ul>
+
+
+
 
     <h2><%= link_to 'Add a new cocktail', new_cocktail_path %></h2>
   </div>
 </div>
+
+

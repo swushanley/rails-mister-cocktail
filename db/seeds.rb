@@ -15,3 +15,11 @@ user["drinks"].each do |ingredient|
   ingred = Ingredient.new(name: ingredient["strIngredient1"])
   ingred.save
 end
+
+# url = 'http://www.thecocktaildb.com/api/json/v1/1/list.php?c=Cocktail'
+# user_serialized = open(url).read
+# user = JSON.parse(user_serialized)
+# user["drinks"].each do |cocktail|
+#   drink = Cocktail.new(name: cocktail["strDrink1"])
+#   drink.save
+# end
