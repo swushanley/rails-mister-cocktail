@@ -1,0 +1,9 @@
+<!-- app/views/products/show.html.erb -->
+<% if @product.photo? %>
+  <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
+<% end %>
+<h1>New Product</h1>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Back', products_path %>

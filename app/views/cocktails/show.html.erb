@@ -1,5 +1,10 @@
+
 <div class="container">
+<!-- app/views/products/show.html.erb -->
   <div class="row col-md-6 col-md-offset-3">
+    <% if @cocktail.photo? %>
+    <%= cl_image_tag @cocktail.photo.path, width: 200, height: 300, crop: :fill %>
+    <% end %>
     <h1><%= @cocktail.name %></h1>
     <ul>
       <% @cocktail.doses.each do |dose| %>
@@ -17,5 +22,6 @@
     <%= link_to 'Back', cocktails_path %>
   </div>
 </div>
+
 
 
